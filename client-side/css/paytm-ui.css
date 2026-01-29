@@ -87,6 +87,24 @@ body {
     color: #0f4a8a;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
+.logout-btn {
+    background: silver;
+    border: none;
+    font-size: 25px;
+    color: #0c53e1;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 50%;
+    transition: background 0.2s ease;
+}
+
+.logout-btn:hover {
+    background: rgba(0, 0, 0, 0.06);
+}
+
+.logout-btn:active {
+    transform: scale(0.95);
+}
 
 .btn-icon {
     font-size: 22px;
@@ -123,6 +141,13 @@ body {
     justify-content: space-between;
     margin-bottom: 10px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.txn-time {
+    font-size: 11px;
+    color: #6b7280;
+    margin-top: 4px;
+    display: block;
+    text-align: right;
 }
 
 .txn-left span {

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receive Payment - Offline Pay</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="screen active">
+        <div class="header">
+            <a href="home.html" class="back-btn">←</a>
+            <h2>Receive Payment</h2>
+        </div>
+
+        <div class="receive-container">
+            <div class="your-number-card">
+                <p class="label">Your Mobile Number</p>
+                <h2 class="number-display" id="yourNumber"></h2>
+                <p class="subtext">Share this number to receive payments</p>
+            </div>
+
+            <div class="qr-placeholder">
+                <div class="qr-code">
+                    <p class="qr-text">Your Payment QR</p>
+                    <div class="qr-icon">📱</div>
+                </div>
+            </div>
+
+            <div class="info-box">
+                <p>💡 Sender can pay you using USSD without internet</p>
+            </div>
+
+            <button class="btn btn-primary btn-full" onclick="checkIncoming()">
+                Check Incoming Payments
+            </button>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Checking payments...</p>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/receive.js"></script>
+</body>
+</html>

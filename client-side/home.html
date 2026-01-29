@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Offline Pay</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="screen active">
+        <div class="header">
+            <div class="header-top">
+                <h1>💳 Offline Pay</h1>
+                <button class="logout-btn" onclick="logout()">
+                    <span>LogOut🚪</span>
+                </button>
+            </div>
+            <p class="welcome-text">Welcome, <span id="userName">User</span></p>
+        </div>
+
+        <div class="balance-card">
+            <p class="balance-label">Available Balance</p>
+            <h2 class="balance-amount" id="balanceAmount">₹0.00</h2>
+            <p class="balance-subtext">A/c: <span id="userMobile"></span></p>
+        </div>
+
+        <div class="action-buttons">
+            <a href="pay.html" class="btn btn-primary">
+                <span class="btn-icon">📤</span>
+                <span>Send Money</span>
+            </a>
+            <a href="receive.html" class="btn btn-secondary">
+                <span class="btn-icon">📥</span>
+                <span>Receive Money</span>
+            </a>
+        </div>
+
+        <div class="offline-indicator">
+            <span class="dot"></span>
+            <span>Offline Mode Active</span>
+        </div>
+
+        <div class="recent-transactions" id="recentTransactions">
+            <h3>Recent Transactions</h3>
+            <div id="transactionsList"></div>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        // Load user data on page load
+        window.addEventListener('DOMContentLoaded', loadUserData);
+
+        async function loadUserData() {
+            const sessionId = localStorage.getItem('sessionId');
+            
+            if (!sessionId) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            try {
+                showLoading(true);
+                const response = await api.getProfile();
+                
+                if (response.success) {
+                    document.getElementById('userName').textContent = response.user.name;
+                    document.getElementById('userMobile').textContent = response.user.mobile;
+                    document.getElementById('balanceAmount').textContent = `₹${parseFloat(response.user.balance).toLocaleString('en-IN', {minimumFractionDigits: 2})}`;
+                    
+                    // Load recent transactions
+                    loadRecentTransactions(response.user.mobile);
+                } else {
+                    window.location.href = 'index.html';
+                }
+            } catch (error) {
+                alert('Error loading profile');
+                window.location.href = 'index.html';
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        async function loadRecentTransactions(mobile) {
+            try {
+                const response = await api.getTransactions(mobile);
+                
+                if (response.success && response.transactions.length > 0) {
+                    const recent = response.transactions.slice(0, 5);
+                    const html = recent.map(txn => {
+                        const isSent = txn.sender === mobile;
+                        const statusIcon = txn.status === 'SUCCESS' ? '✅' : txn.status === 'FAILED' ? '❌' : '⏳';
+                        
+                        return `
+                            <div class="transaction-item ${txn.status.toLowerCase()}">
+                                <div class="txn-left">
+                                    <span class="txn-type">${isSent ? '📤 Sent' : '📥 Received'}</span>
+                                    <span class="txn-party">${isSent ? txn.receiver : txn.sender}</span>
+                                </div>
+                                <div class="txn-right">
+                                    <span class="txn-amount ${isSent ? 'debit' : 'credit'}">
+                                        ${isSent ? '-' : '+'}₹${txn.amount}
+                                    </span>
+                                    <span class="txn-status">${statusIcon}</span>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                    
+                    document.getElementById('transactionsList').innerHTML = html;
+                } else {
+                    document.getElementById('transactionsList').innerHTML = '<p class="no-transactions">No transactions yet</p>';
+                }
+            } catch (error) {
+                console.error('Error loading transactions');
+            }
+        }
+
+        function showLoading(show) {
+            const overlay = document.getElementById('loadingOverlay');
+            if (show) {
+                overlay.classList.add('active');
+            } else {
+                overlay.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>

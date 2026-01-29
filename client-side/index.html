@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Offline Pay</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>💳 Offline Pay</h1>
+                <p>Pay anywhere, even without internet</p>
+            </div>
+
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label>Mobile Number</label>
+                    <input 
+                        type="tel" 
+                        id="mobile" 
+                        placeholder="Enter 10-digit mobile number" 
+                        maxlength="10"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>PIN</label>
+                    <input 
+                        type="password" 
+                        id="pin" 
+                        placeholder="Enter 4-digit PIN" 
+                        maxlength="4"
+                        required
+                    >
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">
+                    Login
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
+            </div>
+
+            <div class="demo-credentials">
+                <p><strong>Demo Credentials:</strong></p>
+                <p>Mobile: 9876543210</p>
+                <p>PIN: 1234</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Logging in...</p>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+.pay-container {
+    position: relative;
+}
+
+.pay-step {
+    display: none;
+}
+
+.pay-step.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.amount-input-wrapper {
+    position: relative;
+}
+
+.currency-symbol {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--gray-600);
+}
+
+.amount-input-wrapper input {
+    padding-left: 40px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.quick-amounts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.quick-amt-btn {
+    padding: 12px;
+    background: var(--gray-100);
+    border: 2px solid var(--gray-200);
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.quick-amt-btn:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+}
+
+.payment-summary {
+    background: var(--gray-100);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+}
+
+.payment-summary h3 {
+    font-size: 16px;
+    margin-bottom: 16px;
+    color: var(--gray-900);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.amount-highlight {
+    font-size: 18px;
+    color: var(--primary);
+}

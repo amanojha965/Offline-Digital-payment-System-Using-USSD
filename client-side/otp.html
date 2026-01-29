@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification - Offline Pay</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h1>Verify OTP</h1>
+                <p>Enter the 6-digit OTP sent to</p>
+                <p class="highlight-text" id="mobileDisplay"></p>
+            </div>
+
+            <form id="otpForm" class="auth-form">
+                <div class="otp-input-group">
+                    <input type="text" maxlength="1" class="otp-box" data-index="0">
+                    <input type="text" maxlength="1" class="otp-box" data-index="1">
+                    <input type="text" maxlength="1" class="otp-box" data-index="2">
+                    <input type="text" maxlength="1" class="otp-box" data-index="3">
+                    <input type="text" maxlength="1" class="otp-box" data-index="4">
+                    <input type="text" maxlength="1" class="otp-box" data-index="5">
+                </div>
+
+                <div class="info-box">
+                    <p>💡 Demo: Enter any 6-digit OTP (e.g., 123456)</p>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">
+                    Verify OTP
+                </button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Didn't receive? <a href="#" onclick="resendOTP()">Resend OTP</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p>Verifying OTP...</p>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/otp.js"></script>
+</body>
+</html>

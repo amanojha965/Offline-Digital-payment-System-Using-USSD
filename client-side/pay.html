@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Payment - Offline Pay</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pay.css">
+    <link rel="stylesheet" href="css/pin.css">
+</head>
+<body>
+    <div class="screen active">
+        <div class="header">
+            <a href="home.html" class="back-btn">←</a>
+            <h2>Send Payment</h2>
+        </div>
+
+        <div class="pay-container">
+            <div id="step1" class="pay-step active">
+                <div class="form-group">
+                    <label>Receiver's Mobile Number</label>
+                    <input 
+                        type="tel" 
+                        id="receiverNumber" 
+                        placeholder="Enter 10-digit number" 
+                        maxlength="10"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Amount (Max ₹10,000)</label>
+                    <div class="amount-input-wrapper">
+                        <span class="currency-symbol">₹</span>
+                        <input 
+                            type="number" 
+                            id="amount" 
+                            placeholder="0.00" 
+                            max="10000"
+                            step="0.01"
+                        >
+                    </div>
+                </div>
+
+                <div class="quick-amounts">
+                    <button class="quick-amt-btn" onclick="setAmount(100)">+₹100</button>
+                    <button class="quick-amt-btn" onclick="setAmount(500)">+₹500</button>
+                    <button class="quick-amt-btn" onclick="setAmount(1000)">+₹1000</button>
+                    <button class="quick-amt-btn" onclick="setAmount(5000)">+₹5000</button>
+                </div>
+
+                <div class="info-box">
+                    <p>💡 Payment will be processed via USSD technology</p>
+                </div>
+
+                <button class="btn btn-primary btn-full" onclick="proceedToPIN()">
+                    Proceed to PIN
+                </button>
+            </div>
+
+            <div id="step2" class="pay-step">
+                <div class="payment-summary">
+                    <h3>Payment Summary</h3>
+                    <div class="summary-row">
+                        <span>Paying to:</span>
+                        <strong id="summaryReceiver"></strong>
+                    </div>
+                    <div class="summary-row">
+                        <span>Amount:</span>
+                        <strong id="summaryAmount" class="amount-highlight"></strong>
+                    </div>
+                </div>
+
+                <div class="pin-section">
+                    <label>Enter PIN to Confirm</label>
+                    <div class="pin-display">
+                        <div class="pin-dot"></div>
+                        <div class="pin-dot"></div>
+                        <div class="pin-dot"></div>
+                        <div class="pin-dot"></div>
+                    </div>
+                    <input type="hidden" id="pinInput" maxlength="4">
+                </div>
+
+                <div class="pin-keypad">
+                    <button class="pin-key" onclick="addPinDigit('1')">1</button>
+                    <button class="pin-key" onclick="addPinDigit('2')">2</button>
+                    <button class="pin-key" onclick="addPinDigit('3')">3</button>
+                    <button class="pin-key" onclick="addPinDigit('4')">4</button>
+                    <button class="pin-key" onclick="addPinDigit('5')">5</button>
+                    <button class="pin-key" onclick="addPinDigit('6')">6</button>
+                    <button class="pin-key" onclick="addPinDigit('7')">7</button>
+                    <button class="pin-key" onclick="addPinDigit('8')">8</button>
+                    <button class="pin-key" onclick="addPinDigit('9')">9</button>
+                    <button class="pin-key pin-key-empty"></button>
+                    <button class="pin-key" onclick="addPinDigit('0')">0</button>
+                    <button class="pin-key pin-key-del" onclick="deletePinDigit()">⌫</button>
+                </div>
+
+                <button class="btn btn-secondary btn-full" onclick="backToStep1()">
+                    Back
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="spinner"></div>
+        <p id="loadingText">Processing via USSD...</p>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/pin.js"></script>
+    <script src="js/pay.js"></script>
+</body>
+</html>

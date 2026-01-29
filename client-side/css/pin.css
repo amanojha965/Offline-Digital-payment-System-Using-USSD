@@ -1,0 +1,74 @@
+.pin-section {
+    margin-bottom: 32px;
+}
+
+.pin-section label {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--gray-900);
+}
+
+.pin-display {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.pin-dot {
+    width: 16px;
+    height: 16px;
+    border: 2px solid var(--gray-300);
+    border-radius: 50%;
+    transition: all 0.3s;
+}
+
+.pin-dot.filled {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.pin-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.pin-key {
+    aspect-ratio: 1;
+    background: var(--gray-100);
+    border: none;
+    border-radius: 50%;
+    font-size: 24px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.pin-key:hover {
+    background: var(--gray-200);
+    transform: scale(1.05);
+}
+
+.pin-key:active {
+    transform: scale(0.95);
+}
+
+.pin-key-empty {
+    background: transparent;
+    cursor: default;
+}
+
+.pin-key-empty:hover {
+    background: transparent;
+    transform: none;
+}
+
+.pin-key-del {
+    font-size: 20px;
+    color: var(--danger);
+}

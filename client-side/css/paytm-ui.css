@@ -1,0 +1,258 @@
+/* RESET */
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #f5f7fa;
+    color: #111827;
+}
+
+/* HEADER */
+.header {
+    background: #ffffff;
+    padding: 16px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1, .header h2 {
+    font-size: 18px;
+    margin: 0;
+    color: #0f4a8a;
+}
+
+.welcome-text {
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 4px;
+}
+
+/* BALANCE CARD */
+.balance-card {
+    background: linear-gradient(135deg, #00baf2, #0f4a8a);
+    color: #fff;
+    margin: 16px;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.balance-label {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.balance-amount {
+    font-size: 30px;
+    margin: 6px 0;
+}
+
+.balance-subtext {
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+/* ACTION BUTTONS (Paytm style grid) */
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin: 16px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 16px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: #ffffff;
+    color: #0f4a8a;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.btn-secondary {
+    background: #ffffff;
+    color: #0f4a8a;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.btn-icon {
+    font-size: 22px;
+}
+
+/* OFFLINE BADGE */
+.offline-indicator {
+    background: #e0f2fe;
+    color: #0369a1;
+    margin: 0 16px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* TRANSACTIONS */
+.recent-transactions {
+    margin: 16px;
+}
+
+.recent-transactions h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.transaction-item {
+    background: #ffffff;
+    padding: 14px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.txn-left span {
+    display: block;
+    font-size: 13px;
+}
+
+.txn-party {
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.txn-amount {
+    font-weight: 600;
+}
+
+.txn-amount.credit {
+    color: #16a34a;
+}
+
+.txn-amount.debit {
+    color: #dc2626;
+}
+
+/* AUTH PAGES */
+.auth-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.auth-header h1 {
+    color: #00baf2;
+}
+
+input {
+    border-radius: 10px;
+    border: 1px solid #e5e7eb;
+    padding: 12px;
+    font-size: 14px;
+}
+
+button {
+    border-radius: 12px;
+}
+.pin-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: flex-end;
+    z-index: 1000;
+}
+
+.pin-card {
+    background: #fff;
+    width: 100%;
+    border-radius: 24px 24px 0 0;
+    padding: 20px;
+}
+
+.pin-subtext {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.pin-display {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.pin-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #d1d5db;
+}
+
+.pin-dot.filled {
+    background: #00baf2;
+}
+
+.pin-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.pin-keypad button {
+    padding: 18px;
+    font-size: 18px;
+    border-radius: 14px;
+    border: none;
+    background: #f3f4f6;
+}
+
+.pin-keypad .empty {
+    background: transparent;
+}
+
+.hidden {
+    display: none;
+}
+
+
+
+/*  */
+.balance-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.eye-btn {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 6px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.eye-btn:active {
+    transform: scale(0.95);
+}
+
+.hidden {
+    display: none;
+}

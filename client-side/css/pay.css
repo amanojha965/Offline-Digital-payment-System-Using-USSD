@@ -84,3 +84,123 @@
     font-size: 18px;
     color: var(--primary);
 }
+/*  */
+/* PAYTM PAY SCREEN */
+
+.pay-container {
+    padding: 16px;
+}
+
+/* Receiver card */
+.receiver-card {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.receiver-card label {
+    font-size: 13px;
+    color: #6b7280;
+}
+
+.receiver-card input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    margin-top: 6px;
+}
+
+/* Amount card */
+.amount-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    margin-bottom: 16px;
+}
+
+.amount-card .currency {
+    font-size: 26px;
+    color: #00baf2;
+}
+
+.amount-card input {
+    border: none;
+    outline: none;
+    font-size: 36px;
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+}
+
+.amount-hint {
+    font-size: 12px;
+    color: #6b7280;
+    margin-top: 6px;
+}
+
+/* Quick amounts */
+.quick-amounts {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    margin-bottom: 16px;
+}
+
+.quick-amt-btn {
+    background: #e0f2fe;
+    color: #0369a1;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+/* Proceed button */
+.btn-primary {
+    background: #00baf2;
+    border-radius: 16px;
+    font-size: 16px;
+}
+
+/* PIN SCREEN */
+.payment-summary {
+    background: #ffffff;
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.pin-display {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.pin-dot {
+    width: 14px;
+    height: 14px;
+    background: #d1d5db;
+    border-radius: 50%;
+}
+
+.pin-keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.pin-key {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 18px;
+    font-size: 18px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}

@@ -114,3 +114,20 @@ function showLoading(show) {
     }
   }
 }
+// after successful login
+// if (response.success) {
+//     localStorage.setItem("sessionId", response.sessionId);
+
+//     // ✅ SAVE LOGIN PIN HERE
+//     const pin = document.getElementById("pin").value;
+//     localStorage.setItem("userPin", pin);
+
+//     window.location.href = "home.html";
+// }
+// function logout() {
+//     localStorage.removeItem("sessionId");
+//     localStorage.removeItem("userPin"); // ✅ clear PIN
+//     window.location.href = "index.html";
+// }
+
+// localStorage.setItem("userPin", document.getElementById("pin").value);

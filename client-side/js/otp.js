@@ -69,3 +69,43 @@ function showLoading(show) {
     overlay.classList.remove('active');
   }
 }
+let generatedOTP = "";
+
+// Generate OTP when page loads
+window.addEventListener("DOMContentLoaded", () => {
+    generatedOTP = Math.floor(100000 + Math.random() * 900000).toString();
+    document.getElementById("otpHint").textContent = generatedOTP;
+});
+
+// Collect OTP input
+document.getElementById("otpForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const boxes = document.querySelectorAll(".otp-box");
+    let enteredOTP = "";
+
+    boxes.forEach(box => {
+        enteredOTP += box.value;
+    });
+
+    if (enteredOTP.length !== 6) {
+        alert("Please enter complete OTP");
+        return;
+    }
+
+    if (enteredOTP === generatedOTP) {
+        alert("OTP Verified Successfully");
+        window.location.href = "home.html";
+    } else {
+        alert("Invalid OTP");
+    }
+});
+
+// Optional: Auto move cursor
+document.querySelectorAll(".otp-box").forEach((box, index, boxes) => {
+    box.addEventListener("input", () => {
+        if (box.value && index < boxes.length - 1) {
+            boxes[index + 1].focus();
+        }
+    });
+});

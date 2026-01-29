@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Offline Pay</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/paytm-ui.css">
 </head>
 <body>
     <div class="screen active">
         <div class="header">
             <div class="header-top">
-                <h1>💳 Offline Pay</h1>
+                <h1>Offline Pay</h1>
                 <button class="logout-btn" onclick="logout()">
                     <span>LogOut🚪</span>
                 </button>
@@ -18,11 +19,56 @@
             <p class="welcome-text">Welcome, <span id="userName">User</span></p>
         </div>
 
-        <div class="balance-card">
+        <!-- <div class="balance-card">
             <p class="balance-label">Available Balance</p>
             <h2 class="balance-amount" id="balanceAmount">₹0.00</h2>
             <p class="balance-subtext">A/c: <span id="userMobile"></span></p>
-        </div>
+        </div> -->
+        <!-- <div class="balance-card">
+    <div class="balance-top">
+        <p class="balance-label">Available Balance</p>
+        <button class="eye-btn" onclick="toggleBalance()">👁️</button>
+    </div>
+
+    <h2 class="balance-amount" id="balanceAmount">₹0.00</h2>
+    <h2 class="balance-amount hidden" id="hiddenBalance">₹•••••</h2>
+
+    <p class="balance-subtext">
+        A/c: <span id="userMobile"></span>
+    </p>
+</div> -->
+<div class="balance-card">
+    
+    <div class="balance-top">
+        <p class="balance-label">Available Balance</p>
+    </div>
+
+    <!-- REAL BALANCE (hidden by default) -->
+    <h2 class="balance-amount hidden" id="balanceAmount">₹0.00</h2>
+
+    <!-- MASKED BALANCE (visible by default) -->
+    <h2 class="balance-amount" id="hiddenBalance">₹•••••</h2>
+
+    <p class="balance-subtext">
+        A/c: <span id="userMobile"></span>
+    </p>
+    <button 
+    id="hideBalanceBtn"
+    class="btn btn-secondary btn-full hidden"
+    onclick="hideBalance()"
+>
+    Hide Balance
+</button>
+</div>
+<!-- <button 
+    id="hideBalanceBtn"
+    class="btn btn-secondary btn-full hidden"
+    onclick="hideBalance()"
+>
+    Hide Balance
+</button> -->
+
+
 
         <div class="action-buttons">
             <a href="pay.html" class="btn btn-primary">
@@ -33,7 +79,12 @@
                 <span class="btn-icon">📥</span>
                 <span>Receive Money</span>
             </a>
+            <button class="btn btn-secondary" onclick="checkBalance()">
+        <span class="btn-icon">💰</span>
+        <span>Check Balance</span>
+    </button>
         </div>
+        
 
         <div class="offline-indicator">
             <span class="dot"></span>
@@ -54,6 +105,175 @@
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
     <script>
+        let hideTimer = null;
+
+function checkBalance() {
+    const confirmCheck = confirm("Check balance via USSD?");
+    if (!confirmCheck) return;
+
+    showLoading(true);
+
+    setTimeout(() => {
+        showLoading(false);
+
+        const balance = document.getElementById("balanceAmount");
+        const hidden = document.getElementById("hiddenBalance");
+        const hideBtn = document.getElementById("hideBalanceBtn");
+
+        // Show balance
+        balance.classList.remove("hidden");
+        hidden.classList.add("hidden");
+        hideBtn.classList.remove("hidden");
+
+        alert("Balance fetched successfully via USSD");
+
+        // Clear old timer if any
+        if (hideTimer) clearTimeout(hideTimer);
+
+        // Auto-hide after 10 seconds
+        hideTimer = setTimeout(() => {
+            hideBalance();
+        }, 10000);
+
+    }, 2000);
+}
+
+function hideBalance() {
+    const balance = document.getElementById("balanceAmount");
+    const hidden = document.getElementById("hiddenBalance");
+    const hideBtn = document.getElementById("hideBalanceBtn");
+
+    balance.classList.add("hidden");
+    hidden.classList.remove("hidden");
+    hideBtn.classList.add("hidden");
+
+    // Clear timer
+    if (hideTimer) {
+        clearTimeout(hideTimer);
+        hideTimer = null;
+    }
+}
+
+    //     function checkBalance() {
+    // const confirmCheck = confirm("Check balance via USSD?");
+
+    // if (!confirmCheck) return;
+
+    // showLoading(true);
+
+    // setTimeout(() => {
+    //     showLoading(false);
+
+    //     const balance = document.getElementById("balanceAmount");
+    //     const hidden = document.getElementById("hiddenBalance");
+    //     const hideBtn = document.getElementById("hideBalanceBtn");
+
+    //     // SHOW balance
+    //     balance.classList.remove("hidden");
+    //     hidden.classList.add("hidden");
+
+//         alert("Balance fetched successfully via USSD");
+
+//         // AUTO-HIDE after 10 seconds
+//         setTimeout(() => {
+//             balance.classList.add("hidden");
+//             hidden.classList.remove("hidden");
+//         }, 10000);
+
+//     }, 2000);
+// }
+
+//         function checkBalance() {
+//     const confirmCheck = confirm("Check balance via USSD?");
+
+//     if (!confirmCheck) return;
+
+//     showLoading(true);
+
+//     setTimeout(() => {
+//         showLoading(false);
+
+//         // SHOW REAL BALANCE
+//         document.getElementById("balanceAmount").classList.remove("hidden");
+//         document.getElementById("hiddenBalance").classList.add("hidden");
+
+//         alert("Balance fetched successfully via USSD");
+//     }, 2000);
+// }
+// let enteredPin = "";
+
+// function checkBalance() {
+//     document.getElementById("pinModal").classList.remove("hidden");
+// }
+
+// function closePinModal() {
+//     resetPin();
+//     document.getElementById("pinModal").classList.add("hidden");
+// }
+
+// function addPin(digit) {
+//     if (enteredPin.length >= 4) return;
+
+//     enteredPin += digit;
+//     updatePinDots();
+
+//     if (enteredPin.length === 4) {
+//         verifyPin();
+//     }
+// }
+
+// function removePin() {
+//     enteredPin = enteredPin.slice(0, -1);
+//     updatePinDots();
+// }
+
+// function updatePinDots() {
+//     const dots = document.querySelectorAll(".pin-dot");
+//     dots.forEach((dot, i) => {
+//         dot.classList.toggle("filled", i < enteredPin.length);
+//     });
+// }
+
+// function resetPin() {
+//     enteredPin = "";
+//     updatePinDots();
+// }
+
+// function verifyPin() {
+//     const savedPin = localStorage.getItem("userPin");
+
+//     if (!savedPin) {
+//         alert("Session expired. Please login again.");
+//         window.location.href = "index.html";
+//         return;
+//     }
+
+//     if (enteredPin !== savedPin) {
+//         alert("Incorrect PIN");
+//         resetPin();
+//         return;
+//     }
+
+//     closePinModal();
+//     fetchBalance();
+// }
+
+
+// function fetchBalance() {
+//     showLoading(true);
+
+//     setTimeout(() => {
+//         showLoading(false);
+
+//         document.getElementById("balanceAmount").classList.remove("hidden");
+//         document.getElementById("hiddenBalance").classList.add("hidden");
+
+//         alert("Balance fetched via USSD");
+//     }, 2000);
+// }
+
+
+     
         // Load user data on page load
         window.addEventListener('DOMContentLoaded', loadUserData);
 
@@ -130,6 +350,51 @@
                 overlay.classList.remove('active');
             }
         }
+//         function checkBalance() {
+//     const confirmCheck = confirm("Check balance via USSD?");
+
+//     if (!confirmCheck) return;
+
+//     showLoading(true);
+
+//     setTimeout(() => {
+//         showLoading(false);
+//         alert("Available Balance: " + document.getElementById("balanceAmount").textContent);
+//     }, 2000);
+// }
+
     </script>
+    <!-- PIN MODAL -->
+<!-- <div id="pinModal" class="pin-modal hidden">
+    <div class="pin-card">
+        <h3>Enter PIN</h3>
+        <p class="pin-subtext">To check your balance</p>
+
+        <div class="pin-display">
+            <div class="pin-dot"></div>
+            <div class="pin-dot"></div>
+            <div class="pin-dot"></div>
+            <div class="pin-dot"></div>
+        </div>
+
+        <div class="pin-keypad">
+            <button onclick="addPin('1')">1</button>
+            <button onclick="addPin('2')">2</button>
+            <button onclick="addPin('3')">3</button>
+            <button onclick="addPin('4')">4</button>
+            <button onclick="addPin('5')">5</button>
+            <button onclick="addPin('6')">6</button>
+            <button onclick="addPin('7')">7</button>
+            <button onclick="addPin('8')">8</button>
+            <button onclick="addPin('9')">9</button>
+            <button class="empty"></button>
+            <button onclick="addPin('0')">0</button>
+            <button onclick="removePin()">⌫</button>
+        </div>
+
+        <button class="btn btn-secondary btn-full" onclick="closePinModal()">Cancel</button>
+    </div>
+</div> -->
+
 </body>
 </html>

@@ -72,3 +72,30 @@
     font-size: 20px;
     color: var(--danger);
 }
+.pin-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.pin-key {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  font-size: 18px;
+  border: none;
+  background: #f2f2f2;
+}
+
+.pay-key {
+  border-radius: 12px;       /* not round */
+  background: #00b4f0;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.pay-key:disabled {
+  background: #b5e7f6;
+  color: #ffffff;
+}
